@@ -1,0 +1,72 @@
+.searchResults__container {
+  text-align: center;
+}
+
+.results__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px;
+  justify-content: center;
+}
+
+.results__subContainer {
+  text-align: left;
+  padding: 0rem 0.3rem;
+
+  p {
+    font-size: 1.4rem;
+  }
+
+  .results-title {
+    text-align: center;
+  }
+
+  #wiki-description {
+    font-size: 1rem;
+  }
+
+  #wiki-view {
+    font-size: 0.8rem;
+  }
+}
+
+.results-video__container {
+  display: flex;
+  text-align: start;
+  padding: 0.2rem 0.4rem;
+  transition: all 0.3s ease-in-out;
+  p {
+  }
+
+  #vid-title {
+    margin: 0.1rem 0.3rem;
+    font-size: 1rem;
+  }
+
+  #vid-channel {
+    margin: 0rem 0.3rem;
+    color: rgb(125, 125, 125);
+    font-size: 0.8rem;
+  }
+
+  #vid-description {
+    margin: 0.1rem 0.3rem;
+    color: rgb(171, 171, 171);
+    font-size: 0.6rem;
+  }
+
+  &:hover {
+    background-color: $light-grey;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+.results-video__subContainer {
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .results__container {
+    grid-template-columns: 1fr;
+  }
+}
