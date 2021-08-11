@@ -35,8 +35,6 @@
   text-align: start;
   padding: 0.2rem 0.4rem;
   transition: all 0.3s ease-in-out;
-  p {
-  }
 
   #vid-title {
     margin: 0.1rem 0.3rem;
@@ -61,8 +59,19 @@
     cursor: pointer;
   }
 }
+
 .results-video__subContainer {
   margin-bottom: 1rem;
+}
+
+.arrowLeft {
+  height: 20px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: rotateX(-180deg);
+    color: aqua;
+  }
 }
 
 @media screen and (max-width: 768px) {

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faArrowLeft, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { TweenMax, Power3 } from "gsap";
 
 import { Results } from "./Results";
@@ -9,6 +10,7 @@ export const SearchBar = () => {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState(false);
 
+  const history = useHistory();
   const searchContainerRef = useRef(null);
   const resultsContainerRef = useRef(null);
 
@@ -27,6 +29,8 @@ export const SearchBar = () => {
       },
     );
 
+    history.push(`/${search}`);
+
     setTimeout(() => {
       setResults(true);
       TweenMax.fromTo(
@@ -43,12 +47,47 @@ export const SearchBar = () => {
       );
     }, 1000);
   };
+
+  const backOnClick = () => {
+    TweenMax.fromTo(
+      resultsContainerRef.current,
+      {
+        x: 0,
+        opacity: 1,
+      },
+      {
+        x: 100,
+        opacity: 0,
+        ease: Power3.easeIn,
+      },
+    );
+
+    history.push(`/${search}`);
+
+    setTimeout(() => {
+      setResults(false);
+      TweenMax.fromTo(
+        searchContainerRef.current,
+        {
+          x: -100,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          ease: Power3.easeInOut,
+        },
+      );
+    }, 1000);
+  };
+
   return (
     <>
       {results ? (
         <div className="searchResults__container" ref={resultsContainerRef}>
           <h1>
-            What's <h1 id="whats">{search}</h1>?
+            <FontAwesomeIcon icon={faArrowLeft} className="arrowLeft" onClick={() => backOnClick()} />
+            What's <h1 id="whats">{search + "?"}</h1>
           </h1>
           <div className="searchResults-content__container">
             <Results keyword={search} />
@@ -70,6 +109,15 @@ export const SearchBar = () => {
                 />
                 <FontAwesomeIcon className="icon" icon={faSearch} />
               </form>
+            </div>
+            <div className="footer__container">
+              <FontAwesomeIcon icon={faHeart} />
+              <p>
+                Made with love by{" "}
+                <a href="https://www.linkedin.com/in/joaquin-lopez-a955451a8/" target="__blank">
+                  Joaquin
+                </a>
+              </p>
             </div>
           </div>
         </div>

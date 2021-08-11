@@ -39,17 +39,23 @@ export const Results = (props) => {
             {video.map(({ snippet, id }, index) => {
               return (
                 <>
-                  <div className="results-video__container" key={index}>
-                    <img src={snippet.thumbnails.default.url} alt="video thumbnail"></img>
-                    <div className="results-video__subContainer" href={`www.youtube.com/?v=${id.videoId}`}>
-                      <p id="vid-title">{snippet.title.replace("&#39;", "'").replace("&quot;", "'")}</p>
-                      <p id="vid-channel">{snippet.channelTitle}</p>
-                      <p id="vid-description">
-                        {snippet.description.slice(0, 100).replace("&#39;", "'").replace("&quot;", "'")}...
-                      </p>
+                  <a target="_blank" rel="noreferrer" href={`https://www.youtube.com/watch?v=${id.videoId}`}>
+                    <div className="results-video__container" key={index}>
+                      <img
+                        src={snippet.thumbnails.default.url}
+                        href={`www.youtube.com/?v=${id.videoId}`}
+                        alt="video thumbnail"
+                      ></img>
+                      <div className="results-video__subContainer">
+                        <p id="vid-title">{snippet.title.replace("&#39;", "'").replace("&quot;", "'")}</p>
+                        <p id="vid-channel">{snippet.channelTitle}</p>
+                        <p id="vid-description">
+                          {snippet.description.slice(0, 100).replace("&#39;", "'").replace("&quot;", "'")}...
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <hr />
+                    <hr />
+                  </a>
                 </>
               );
             })}
@@ -65,7 +71,10 @@ export const Results = (props) => {
           <>
             <p id="wiki-description">{wiki}...</p>
             <p id="wiki-view">
-              View the wiki page <a href={`https://en.wikipedia.com/wiki/${updatedKey}`}>here</a>
+              View the wiki page{" "}
+              <a href={`https://en.wikipedia.com/wiki/${updatedKey}`} target="_blank" rel="noreferrer">
+                here
+              </a>
             </p>
           </>
         )}
